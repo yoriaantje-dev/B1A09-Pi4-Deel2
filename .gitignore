@@ -129,5 +129,6 @@ dmypy.json
 .pyre/
 
 # Eigen Zooi
-.idea
-.vscode
+.idea/
+.vscode/
+.vscode/launch.json
