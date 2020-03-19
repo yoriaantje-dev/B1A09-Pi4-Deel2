@@ -1,7 +1,7 @@
 import pyodbc
 import os.path
 from exc.opdracht_6_pi4_2 import print_songs_per_album as exc6
-from exc.opdracht_7_pi4_2 import print_songs_per_album as exc7
+from exc.opdracht_7_pi4_2 import print_album_with_song_info as exc7
 import exc.database_operations as op
 
 def connect_to_DB():

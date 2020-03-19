@@ -1,3 +1,14 @@
+import pyodbc
+import os.path
+
+def connect_to_DB():
+    print("Creating Database connection...")
+    conn_str = (r"Driver={Microsoft Access Driver (*.mdb, *.accdb)};"
+                r"DBQ=C:\\Users\\yoria\\OneDrive - ZuydHogeschool\\HS Zuyd\\B1A09 - Databases\\Summatief\\Pi4 Deel2\\code pi4\\code\\Muziek.accdb")
+    connection = pyodbc.connect(conn_str)
+    return connection
+
+
 def print_songs_per_album(conn):
     album_dict = {}
     table_cursor = conn.cursor()
@@ -59,7 +70,7 @@ def print_songs_per_album(conn):
 
     out = 1
     for a_name, a_values in album_dict.items():
-        print(f"\n\n>>> OUTPUT NUMBER {out}")
+        print(f"\n\n>>> OUTPUT EXC6 NUMBER {out}")
         print(f"Het album {a_name} is van het genre: {a_values['type']}"
                 f"\nMet de liedjes:")
         num = 1
@@ -67,3 +78,10 @@ def print_songs_per_album(conn):
             print(f"{num}. {song}")
             num += 1
         out += 1
+
+
+
+# opdracht 6:
+print("\n\n=====OPDRACHT 6=====")
+database = connect_to_DB()
+print_songs_per_album(database)
