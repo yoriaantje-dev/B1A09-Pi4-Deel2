@@ -1,8 +1,9 @@
 import pyodbc
 import os.path
+
 from exc.opdracht_6_pi4_2 import print_songs_per_album as exc6
 from exc.opdracht_7_pi4_2 import print_album_with_song_info as exc7
-import exc.database_operations as op
+from exc.opdracht_8_pi4_2 import print_artist_from_last_name as exc8
 
 def connect_to_DB():
     print("Creating Database connection...")
@@ -12,12 +13,6 @@ def connect_to_DB():
                 r"DBQ=C:\\Users\\yoria\\OneDrive - ZuydHogeschool\\HS Zuyd\\B1A09 - Databases\\Summatief\\Pi4 Deel2\\code pi4\\code\\Muziek.accdb")
     connection = pyodbc.connect(conn_str)
     return connection
-
-
-def run(conn):
-    cursor, table = op.select_table(conn)
-    op.select_column(cursor, table)
-
 
 def disconnect_sql(conn):
     conn.close()
@@ -52,6 +47,5 @@ if __name__ == "__main__":
     print("\n\n=====OPDRACHT 7=====")
     exc7(database)
 
-    
-    
+       
     disconnect_sql(database)

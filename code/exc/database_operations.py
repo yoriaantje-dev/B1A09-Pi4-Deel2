@@ -1,3 +1,9 @@
+def set_cursor(conn):
+    cursor, table = select_table(conn)
+    cursor = select_column(cursor, table)
+    return cursor
+
+
 def select_table(conn):
     # Print all Tables in Database
     cursor = conn.cursor()
@@ -22,9 +28,5 @@ def select_column(crsr, table_name):
     column_name = str(input("Column Name(s)? "))      
     selection = "SELECT " + column_name + " from " + table_name
     crsr.execute(selection)
-    
-    # Print all rows in selected Column(s)
-    rows_in_column = [row for row in crsr.fetchall()]
-    for item in rows_in_column:
-        print(* item, sep=",")
+    return crsr
     

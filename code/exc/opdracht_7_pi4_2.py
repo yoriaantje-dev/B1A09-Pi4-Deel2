@@ -35,9 +35,9 @@ def print_album_with_song_info(conn):
 
             values = crsr.fetchall()
             for link in values:
-                for a_name, a_values in album_dict.items():
-                        if a_values["id"] == link[1]:
-                            a_values["song_list"].append(link[0])
+                for album_name, album_data in album_dict.items():
+                        if album_data["id"] == link[1]:
+                            album_data["song_list"].append(link[0])
             del crsr
         
         elif table.table_name == "dbo_SONG":
@@ -50,21 +50,21 @@ def print_album_with_song_info(conn):
             for song in values:
                 song_id, song_name, song_duration = song[0], song[1], song[2]
 
-                for a_name, a_values in album_dict.items():
-                    for stored_song_id in a_values["song_list"]:
+                for album_name, album_data in album_dict.items():
+                    for stored_song_id in album_data["song_list"]:
                         if song_id == stored_song_id:
-                            a_values["song_dict"].update({song_name: song_duration})
-                            a_values["song_list"].remove(song_id)
+                            album_data["song_dict"].update({song_name: song_duration})
+                            album_data["song_list"].remove(song_id)
             del crsr
     
     out = 1
-    for a_name in album_dict:
+    for album_name in album_dict:
         print(f"\n\n>>> OUTPUT EXC7 NUMBER {out}")
-        print(f"Het album {a_name}"
+        print(f"Het album {album_name}"
                 f"\nMet de liedjes:")
 
         num = 1
-        for song, duration in album_dict[a_name]["song_dict"].items():
+        for song, duration in album_dict[album_name]["song_dict"].items():
             print(f"{num}. {song} -- Duration: {duration}min")
             num += 1
         out += 1

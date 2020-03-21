@@ -33,10 +33,10 @@ def print_songs_per_album(conn):
             crsr.execute("SELECT * from dbo_ALBUMSONG")
 
             values = crsr.fetchall()
-            for link in values:
-                for a_name, a_values in album_dict.items():
-                        if a_values["id"] == link[1]:
-                            a_values["song_list"].append(link[0])
+            for album_name, album_data in album_dict.items():
+                for link in values:
+                    if album_data["id"] == link[1]:
+                        album_data["song_list"].append(link[0])
             del crsr
 
         elif table.table_name == "dbo_ALBUMTYPE":
@@ -46,9 +46,9 @@ def print_songs_per_album(conn):
 
             values = crsr.fetchall()
             for link in values:
-                for a_name, a_values in album_dict.items():
-                    if link[0] == a_values["type"]:
-                        a_values["type"] = link[1]
+                for album_name, album_data in album_dict.items():
+                    if link[0] == album_data["type"]:
+                        album_data["type"] = link[1]
 
             del crsr
         
@@ -61,20 +61,20 @@ def print_songs_per_album(conn):
             for song in values:
                 song_id, song_name = song[0], song[1]
 
-                for a_name, a_values in album_dict.items():
-                    for stored_song_id in a_values["song_list"]:
+                for album_name, album_data in album_dict.items():
+                    for stored_song_id in album_data["song_list"]:
                         if song_id == stored_song_id:
-                            a_values["song_list"].append(song_name)
-                            a_values["song_list"].remove(song_id)
+                            album_data["song_list"].append(song_name)
+                            album_data["song_list"].remove(song_id)
             del crsr
 
     out = 1
-    for a_name, a_values in album_dict.items():
+    for album_name, album_data in album_dict.items():
         print(f"\n\n>>> OUTPUT EXC6 NUMBER {out}")
-        print(f"Het album {a_name} is van het genre: {a_values['type']}"
+        print(f"Het album {album_name} is van het genre: {album_data['type']}"
                 f"\nMet de liedjes:")
         num = 1
-        for song in a_values["song_list"]:
+        for song in album_data["song_list"]:
             print(f"{num}. {song}")
             num += 1
         out += 1
