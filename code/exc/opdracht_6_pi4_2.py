@@ -80,8 +80,8 @@ def print_songs_per_album(conn):
         out += 1
 
 
-
-# opdracht 6:
-print("\n\n=====OPDRACHT 6=====")
-database = connect_to_DB()
-print_songs_per_album(database)
+if __name__ == "__main__":
+    # opdracht 6:
+    print("\n\n=====OPDRACHT 6=====")
+    database = connect_to_DB()
+    print_songs_per_album(database)

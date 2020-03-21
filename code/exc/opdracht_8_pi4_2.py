@@ -143,22 +143,21 @@ def print_artist_from_last_name(conn):
                         if row[0] == artist_dict["songs"][num]:
                             artist_dict["songs"].append(row[1])
                             artist_dict["songs"].remove(row[0])
-    print(artist_dict)
 
-    # out = 1
-    # for artist_name, artist_data in artist_dict.items():
-    #     print(f"\n\n>>> OUTPUT EXC8 NUMBER {out}")
-    #     print(f"Het album {artist_name} is van het genre: {artist_data['type']}"
-    #             f"\nMet de liedjes:")
-    #     num = 1
-    #     for song in artist_data["song_list"]:
-    #         print(f"{num}. {song}")
-    #         num += 1
-    #     out += 1
+
+    print(f"Artiest {artist_dict['name']} speelt als {artist_dict['rol_id']} in de volgende band:")
+    print(f"Bandnaam: {artist_dict['band_info']['name']}, uit {artist_dict['band_info']['country']}")
+    print(f"Bandleden:")
+    for member in artist_dict['band_members']:
+        print(" -", member)
+    print("\nDe artiest heeft volgende nummers geschreven:")
+    for song in artist_dict['songs']:
+        print(" -", song)
 
 
 
-# opdracht 8:
-print("\n\n=====OPDRACHT 8=====")
-database = connect_to_DB()
-print_artist_from_last_name(database)
+if __name__ == "__main__":
+    # opdracht 8:
+    print("\n\n=====OPDRACHT 8=====")
+    database = connect_to_DB()
+    print_artist_from_last_name(database)

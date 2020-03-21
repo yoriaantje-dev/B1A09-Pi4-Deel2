@@ -69,8 +69,8 @@ def print_album_with_song_info(conn):
             num += 1
         out += 1
 
-
-# opdracht 7:
-print("\n\n=====OPDRACHT 7=====")
-database = connect_to_DB()
-print_album_with_song_info(database)
+if __name__ == "__main__":
+    # opdracht 7:
+    print("\n\n=====OPDRACHT 7=====")
+    database = connect_to_DB()
+    print_album_with_song_info(database)

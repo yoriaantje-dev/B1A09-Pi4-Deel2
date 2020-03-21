@@ -47,5 +47,9 @@ if __name__ == "__main__":
     print("\n\n=====OPDRACHT 7=====")
     exc7(database)
 
+    # opdracht 8:
+    print("\n\n=====OPDRACHT 8=====")
+    exc8(database)
+
        
     disconnect_sql(database)
